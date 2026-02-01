@@ -14,6 +14,16 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
+				window = {
+					completion = cmp.config.window.bordered({
+						max_height = 10,
+						max_width = 50,
+					}),
+					documentation = cmp.config.window.bordered({
+						max_height = 15,
+						max_width = 60,
+					}),
+				},
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "buffer" },
