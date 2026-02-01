@@ -4,9 +4,9 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlight" })
 
-local function telescope_builtin(fn)
+local function telescope_builtin(fn, arg)
 	return function()
-		require("telescope.builtin")[fn]()
+		require("telescope.builtin")[fn](arg)
 	end
 end
 
@@ -14,6 +14,12 @@ vim.keymap.set("n", "<leader>sf", telescope_builtin("find_files"), { desc = "Fin
 vim.keymap.set("n", "<leader>sg", telescope_builtin("live_grep"), { desc = "Live grep" })
 vim.keymap.set("n", "<leader>sb", telescope_builtin("buffers"), { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>sr", telescope_builtin("oldfiles"), { desc = "Recent files" })
+vim.keymap.set(
+	"n",
+	"<leader>sbg",
+	telescope_builtin("live_grep", { grep_open_files = true }),
+	{ desc = "Open Buffer Grep" }
+)
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
